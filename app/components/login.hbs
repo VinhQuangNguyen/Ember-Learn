@@ -1,13 +1,19 @@
 <form {{on "submit" this.handleSubmit}}>
-    <label>
-        <p>Username</p>
-        <Input @type="text" @value={{this.username}} />
-    </label>
-    <br />
-    <label>
-        <p>Password</p>
-        <Input @type="password" @value={{this.password}} />
-    </label>
+    <div>
+         <label for="usernameTest">
+            Username
+        </label>
+        <br /><br />
+        <Input @type="text" @value={{this.username}} name="usernameTest" />
+    </div>
+    <br /><br />
+    <div>
+        <label for="passwordTest">
+            Password
+        </label>
+        <br /><br />
+        <Input @type="password" @value={{this.password}} name="passwordTest" />
+    </div>
     <br /><br />
     <button type="submit">Login</button>
 

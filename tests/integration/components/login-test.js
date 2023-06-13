@@ -9,8 +9,9 @@ module('Integration | Component | login', function (hooks) {
   test('it renders', async function (assert) {
     await render(hbs`<Login />`);
 
+/* Version 1  */
     // get all label tag
-    const labelElms = findAll('label');
+    const labelElms = findAll('div');
     assert.equal(labelElms.length, 2);
 
     // get label contain 'Username'
@@ -60,5 +61,38 @@ module('Integration | Component | login', function (hooks) {
     sttElement = findAll('.status')[0];
     assert.equal(sttElement.textContent.trim(), "Login failed !!!")
 
+    
+
+    /* Version 2 
+     const usernameInput = find('input[name="usernameTest"]');
+     assert.ok(!!usernameInput)
+     await fillIn(usernameInput, 'abcd');
+     assert.equal(usernameInput.value, 'abcd')
+
+
+     const passwordInput = find('input[name="passwordTest"]');
+     assert.ok(!!passwordInput)
+     await fillIn(passwordInput, 1234);
+     assert.equal(passwordInput.value, 1234)
+
+    let buttonElement = find('button');
+    await click(buttonElement);
+
+    let sttElement = findAll('.status')[0];
+    assert.equal(sttElement.textContent.trim(), "Login success !!!")
+
+    await fillIn(usernameInput, 'abcde');
+    assert.equal(usernameInput.value, 'abcde')
+    
+    buttonElement = find('button');
+    await click(buttonElement);
+    sttElement = findAll('.status')[0];
+    assert.equal(sttElement.textContent.trim(), "Login failed !!!")
+*/
+
+
+    /* Version 3
+    assert.dom('label').hasText('Username');
+    */
  });
 });
