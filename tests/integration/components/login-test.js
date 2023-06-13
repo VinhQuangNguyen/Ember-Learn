@@ -43,9 +43,7 @@ module('Integration | Component | login', function (hooks) {
     // Click the button element
     await click(buttonElement);
 
-    const sttSuccess = find('#sign-in-success');
-    assert.equal(!!sttSuccess, true)
-    // console.log('111', sttSuccess.textContent)
-    assert.equal(sttSuccess.textContent.trim() , "Login success !!!" )
-  });
+    let sttElement = findAll('.status')[0];
+    assert.equal(sttElement.textContent.trim(), "Login success !!!")
+ });
 });
