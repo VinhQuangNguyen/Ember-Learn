@@ -13,8 +13,8 @@
 
     {{#if (eq this.loginStt 0) }}
     {{else if (eq this.loginStt 1) }}
-    <p class="status">Login success !!!</p>
+    <p class="status" id="sign-in-success">Login success !!!</p>
     {{else}}
-    <p class="status">Login failed !!!</p>
+    <p class="status" id="sign-in-fail">Login failed !!!</p>
     {{/if}}
 </form>

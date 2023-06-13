@@ -51,6 +51,7 @@ module('Integration | Component | login', function (hooks) {
     // Below, test when authen wrong
     await fillIn(inputUsernameElement, 'abcde');
     assert.equal(inputUsernameElement.value, 'abcde')
+    
     // Find the button element
     buttonElement = find('button');
     // Click the button element
