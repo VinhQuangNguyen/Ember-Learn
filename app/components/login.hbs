@@ -1,0 +1,19 @@
+<form {{on "submit" this.handleSubmit}}>
+    <label>
+        Username
+        <Input @type="text" @value={{this.username}} />
+    </label>
+    <label>
+        Password
+        <Input @type="password" @value={{this.password}} />
+    </label>
+    <br /><br />
+    <button id="login-submit" type="submit">Login</button>
+
+    {{#if (eq this.loginStt 0) }}
+    {{else if (eq this.loginStt 1) }}
+    <p id="sign-in-success">Login success !!!</p>
+    {{else}}
+    <p id="sign-in-fail">Login failed !!!</p>
+    {{/if}}
+</form>
