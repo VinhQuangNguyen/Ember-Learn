@@ -9,14 +9,16 @@ module('Integration | Component | login', function (hooks) {
   test('it renders', async function (assert) {
     await render(hbs`<Login />`);
 
+/* Version 1  */
     // get all label tag
-    const labelElms = findAll('label');
+    const labelElms = findAll('div');
     assert.equal(labelElms.length, 2);
 
     // get label contain 'Username'
     let nameWrapperContent = labelElms.find(e => e.textContent.includes('Username'));
     // check exist username wrapper
-    assert.equal( !!nameWrapperContent, true );
+    //  assert.equal( !!nameWrapperContent, true );  // version 1
+    assert.ok(!!nameWrapperContent) // version 2
     // if exist username container, check it has content is 'Username'
     assert.equal(nameWrapperContent.textContent.trim(), "Username")
 
@@ -29,7 +31,8 @@ module('Integration | Component | login', function (hooks) {
     // get label contain 'Password'
     let pwWrapperContent = labelElms.find(e => e.textContent.includes('Password'));
     // check exist username wrapper
-    assert.equal( !!pwWrapperContent, true );
+    // assert.equal( !!pwWrapperContent, true ); // version 1
+    assert.ok(!!pwWrapperContent) //version 2
     // if exist password container, check it has content is 'Password'
     assert.equal(pwWrapperContent.textContent.trim(), "Password")
     // get element input in name wrapper
@@ -39,13 +42,57 @@ module('Integration | Component | login', function (hooks) {
     assert.equal(inputPasswordElement.value, 1234)
     
     // Find the button element
-    const buttonElement = find('button');
+    let buttonElement = find('button');
     // Click the button element
     await click(buttonElement);
 
-    const sttSuccess = find('#sign-in-success');
-    assert.equal(!!sttSuccess, true)
-    // console.log('111', sttSuccess.textContent)
-    assert.equal(sttSuccess.textContent.trim() , "Login success !!!" )
-  });
+    let sttElement = findAll('.status')[0];
+    assert.equal(sttElement.textContent.trim(), "Login success !!!")
+
+    // Below, test when authen wrong
+    await fillIn(inputUsernameElement, 'abcde');
+    assert.equal(inputUsernameElement.value, 'abcde')
+    
+    // Find the button element
+    buttonElement = find('button');
+    // Click the button element
+    await click(buttonElement);
+
+    sttElement = findAll('.status')[0];
+    assert.equal(sttElement.textContent.trim(), "Login failed !!!")
+
+    
+
+    /* Version 2 
+     const usernameInput = find('input[name="usernameTest"]');
+     assert.ok(!!usernameInput)
+     await fillIn(usernameInput, 'abcd');
+     assert.equal(usernameInput.value, 'abcd')
+
+
+     const passwordInput = find('input[name="passwordTest"]');
+     assert.ok(!!passwordInput)
+     await fillIn(passwordInput, 1234);
+     assert.equal(passwordInput.value, 1234)
+
+    let buttonElement = find('button');
+    await click(buttonElement);
+
+    let sttElement = findAll('.status')[0];
+    assert.equal(sttElement.textContent.trim(), "Login success !!!")
+
+    await fillIn(usernameInput, 'abcde');
+    assert.equal(usernameInput.value, 'abcde')
+    
+    buttonElement = find('button');
+    await click(buttonElement);
+    sttElement = findAll('.status')[0];
+    assert.equal(sttElement.textContent.trim(), "Login failed !!!")
+*/
+
+
+    /* Version 3
+    assert.dom('label').hasText('Username');
+    */
+ });
 });
