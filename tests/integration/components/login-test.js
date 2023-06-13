@@ -16,7 +16,8 @@ module('Integration | Component | login', function (hooks) {
     // get label contain 'Username'
     let nameWrapperContent = labelElms.find(e => e.textContent.includes('Username'));
     // check exist username wrapper
-    assert.equal( !!nameWrapperContent, true );
+    //  assert.equal( !!nameWrapperContent, true );  // version 1
+    assert.ok(!!nameWrapperContent) // version 2
     // if exist username container, check it has content is 'Username'
     assert.equal(nameWrapperContent.textContent.trim(), "Username")
 
@@ -29,7 +30,8 @@ module('Integration | Component | login', function (hooks) {
     // get label contain 'Password'
     let pwWrapperContent = labelElms.find(e => e.textContent.includes('Password'));
     // check exist username wrapper
-    assert.equal( !!pwWrapperContent, true );
+    // assert.equal( !!pwWrapperContent, true ); // version 1
+    assert.ok(!!pwWrapperContent) //version 2
     // if exist password container, check it has content is 'Password'
     assert.equal(pwWrapperContent.textContent.trim(), "Password")
     // get element input in name wrapper
@@ -39,11 +41,23 @@ module('Integration | Component | login', function (hooks) {
     assert.equal(inputPasswordElement.value, 1234)
     
     // Find the button element
-    const buttonElement = find('button');
+    let buttonElement = find('button');
     // Click the button element
     await click(buttonElement);
 
     let sttElement = findAll('.status')[0];
     assert.equal(sttElement.textContent.trim(), "Login success !!!")
+
+    // Below, test when authen wrong
+    await fillIn(inputUsernameElement, 'abcde');
+    assert.equal(inputUsernameElement.value, 'abcde')
+    // Find the button element
+    buttonElement = find('button');
+    // Click the button element
+    await click(buttonElement);
+
+    sttElement = findAll('.status')[0];
+    assert.equal(sttElement.textContent.trim(), "Login failed !!!")
+
  });
 });
