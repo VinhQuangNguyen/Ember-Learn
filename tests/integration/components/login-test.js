@@ -9,7 +9,7 @@ module('Integration | Component | login', function (hooks) {
   test('it renders', async function (assert) {
     await render(hbs`<Login />`);
 
-/* Version 1  */
+/* Version 1   */
     // get all label tag
     const labelElms = findAll('div');
     assert.equal(labelElms.length, 2);
@@ -91,8 +91,21 @@ module('Integration | Component | login', function (hooks) {
 */
 
 
-    /* Version 3
-    assert.dom('label').hasText('Username');
+    /* Version 3 
+    assert.dom('label[for="usernameTest"]').exists();
+    await fillIn('input[name="usernameTest"]', 'abcd');
+    assert.dom('input[name="usernameTest"]').hasValue('abcd');
+
+    assert.dom('label[for="passwordTest"]').exists();
+    await fillIn('input[name="passwordTest"]', 1234);
+    assert.dom('input[name="passwordTest"]').hasValue("1234");
+
+
+    let buttonElement = find('button');
+    await click(buttonElement);
+    let sttElement = findAll('.status')[0];
+    assert.equal(sttElement.textContent.trim(), "Login success !!!")
+
     */
  });
 });
