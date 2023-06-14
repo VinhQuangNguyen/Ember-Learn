@@ -9,7 +9,7 @@ module('Integration | Component | login', function (hooks) {
   test('it renders', async function (assert) {
     await render(hbs`<Login />`);
 
-/* Version 1   */
+/* Version 1  */
     // get all label tag
     const labelElms = findAll('div');
     assert.equal(labelElms.length, 2);
@@ -60,8 +60,7 @@ module('Integration | Component | login', function (hooks) {
 
     sttElement = findAll('.status')[0];
     assert.equal(sttElement.textContent.trim(), "Login failed !!!")
-
-    
+ 
 
     /* Version 2 
      const usernameInput = find('input[name="usernameTest"]');
@@ -75,7 +74,7 @@ module('Integration | Component | login', function (hooks) {
      await fillIn(passwordInput, 1234);
      assert.equal(passwordInput.value, 1234)
 
-    let buttonElement = find('button');
+    let buttonElement = find('button[type="submit"]');
     await click(buttonElement);
 
     let sttElement = findAll('.status')[0];
@@ -88,7 +87,7 @@ module('Integration | Component | login', function (hooks) {
     await click(buttonElement);
     sttElement = findAll('.status')[0];
     assert.equal(sttElement.textContent.trim(), "Login failed !!!")
-*/
+    */
 
 
     /* Version 3 
